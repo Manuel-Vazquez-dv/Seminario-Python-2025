@@ -37,10 +37,15 @@ for _ in range(3):
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
         user_answer = int(input("Respuesta: ")) - 1
+        #Se verifica que la respuesta sea un int valido
+        if type(user_answer)!=int and user_answer not in range(1, 4): 
+             print("Respuesta invalida. Escriba un numero de 1 a 4") 
+             break
+        else:
         # Se verifica si la respuesta es correcta
-        if user_answer == correct_answers_index[question_index]:
-         print("¡Correcto!")
-         break
+             if (user_answer-1) == correct_answers_index[question_index]:
+                 print("¡Correcto!")
+                 break
     else:
         # Si el usuario no responde correctamente después de 2 intentos,
         # se muestra la respuesta correcta
