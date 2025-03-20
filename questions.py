@@ -24,40 +24,54 @@ answers = [
 # Índice de la respuesta correcta para cada pregunta, el el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 puntaje = 0
+
+# Se seleccionan preguntas aleatorias   
+questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3)
+print(questions_to_ask)
+print(questions_to_ask[0][2])
+
 # El usuario deberá contestar 3 preguntas
 for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_index = random.randint(0, len(questions) - 1)
 
-    # Se muestra la pregunta y las respuestas posibles
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]):
+    # Se muestra la pregunta actual y las respuestas posibles
+    print(questions_to_ask[_][0])
+    for i, answer in enumerate(questions_to_ask[_][1]):
         print(f"{i + 1}. {answer}")
     once = False
+
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
         user_answer = (int(input("Respuesta: "))) - 1
+
         #Se verifica que la respuesta sea un int valido
         if type(user_answer)!=int or user_answer not in range(0, 4): 
              print("Respuesta invalida. Escriba un numero de 1 a 4") 
              continue
         else:
+             
         # Se verifica si la respuesta es correcta
-             if (user_answer) == correct_answers_index[question_index]:
+             if (user_answer) == questions_to_ask[_][2]:
                  print("¡Correcto!")
+
+                 #Se suma puntaje y se continua a la siguiente pregunta.
                  puntaje += 1
                  break
              else: 
+                 
+                 #Si es la primera vez que responde, se imprime un mensaje.
                  if not once:
                      print("Incorrecto, intente de nuevo.")
                      once = True
+
+                 #Se resta puntaje y continua con el ultimo intento.    
                  puntaje -= 0.5
                  continue
     else:
         # Si el usuario no responde correctamente después de 2 intentos,
         # se muestra la respuesta correcta
         print("Incorrecto. La respuesta correcta es:")
-        print(answers[question_index][correct_answers_index[question_index]])
+        print(questions_to_ask[_][1][(questions_to_ask[_][2])])
+        #Se resetea la cantidad de intentos.
         once = False
     # Se imprime un blanco al final de la pregunta
     print()
