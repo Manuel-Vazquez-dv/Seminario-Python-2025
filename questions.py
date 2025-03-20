@@ -26,7 +26,7 @@ correct_answers_index = [1, 2, 0, 3, 1]
 puntaje = 0
 
 # Se seleccionan preguntas aleatorias   
-questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3)
+questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3)
 print(questions_to_ask)
 print(questions_to_ask[0][2])
 
