@@ -27,15 +27,13 @@ puntaje = 0
 
 # Se seleccionan preguntas aleatorias   
 questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3)
-print(questions_to_ask)
-print(questions_to_ask[0][2])
 
 # El usuario deberá contestar 3 preguntas
-for _ in range(3):
+for question, answers, correct_answers_index in questions_to_ask:
 
     # Se muestra la pregunta actual y las respuestas posibles
-    print(questions_to_ask[_][0])
-    for i, answer in enumerate(questions_to_ask[_][1]):
+    print(question)
+    for i, answer in enumerate(answers):
         print(f"{i + 1}. {answer}")
     once = False
 
@@ -50,7 +48,7 @@ for _ in range(3):
         else:
              
         # Se verifica si la respuesta es correcta
-             if (user_answer) == questions_to_ask[_][2]:
+             if (user_answer) == correct_answers_index:
                  print("¡Correcto!")
 
                  #Se suma puntaje y se continua a la siguiente pregunta.
@@ -70,7 +68,7 @@ for _ in range(3):
         # Si el usuario no responde correctamente después de 2 intentos,
         # se muestra la respuesta correcta
         print("Incorrecto. La respuesta correcta es:")
-        print(questions_to_ask[_][1][(questions_to_ask[_][2])])
+        print(answers[correct_answers_index])
         #Se resetea la cantidad de intentos.
         once = False
     # Se imprime un blanco al final de la pregunta
