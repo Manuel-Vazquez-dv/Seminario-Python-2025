@@ -11,21 +11,22 @@ def sortVocal(toSort):
 
 #Ejercicio 10
 
-def display_round(current):
+def display_round(current, actualround):
       """
       Imprime en consola las estadisticas totales de los jugadores utilizando los valores enviados.
 
       :param current: Diccionario con los valores totales de cada jugador.
       """
       sortedCurrent = sorted(current,key=lambda x: current[x]['points'], reverse=True)
+      print(f"Ronda {actualround}")
       print(f"Nombre   Kills   Asistencias   Muertes   MVP's   Puntos totales\n")
-      print("-------------------------------------------------")
+      print("-------------------------------------------------------------------")
       for elem in sortedCurrent:
-            print (f"{elem}   {current[elem]['kills']}   {current[elem]['assists']}   {current[elem]['deaths']}   {current[elem]['MVPS']}   {current[elem]['points']}")
-      print("-------------------------------------------------")      
+            print(f"{elem:<10}{current[elem]['kills']:>6}{current[elem]['assists']:>12}{current[elem]['deaths']:>10}{current[elem]['MVPS']:>8}{current[elem]['points']:>15}")
+      print("-------------------------------------------------------------------")      
       return
 
-def process_round(currentRound, total):
+def process_round(currentRound, total, actualround):
      """
       Procesa la ronda actual, determina el MVP, y luego envia los datos actualizados a "display_round" con el proposito de imprimir el ranking.
 
@@ -35,15 +36,17 @@ def process_round(currentRound, total):
      currLeader = "dummyvalue"
      currLPoints = -99999
      for elem in currentRound:
-           total[elem]['kills'] =+ currentRound[elem]['kills'] 
-           total[elem]['assists'] =+ currentRound[elem]['assists']
+           total[elem]['kills'] += currentRound[elem]['kills'] 
+           total[elem]['assists'] += currentRound[elem]['assists']
            actualPoints = (currentRound[elem]['kills']*3 + currentRound[elem]['assists'])
            if (currentRound[elem]['deaths']): 
                 total[elem]['deaths'] += 1
                 actualPoints -= 1  
-           total[elem]['points'] =+ actualPoints     
+           total[elem]['points'] += actualPoints     
            if actualPoints>currLPoints:
                  currLeader=elem
                  currLPoints=actualPoints           
      total[currLeader]['MVPS'] += 1            
-     display_round(total)     
+     display_round(total, actualround)
+     actualround+=1    
+     return actualround  
