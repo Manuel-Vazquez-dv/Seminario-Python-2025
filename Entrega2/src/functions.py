@@ -22,7 +22,7 @@ def display_round(current, actualround):
       print(f"Nombre   Kills   Asistencias   Muertes   MVP's   Puntos totales\n")
       print("-------------------------------------------------------------------")
       for elem in sortedCurrent:
-            print(f"{elem:<10}{current[elem]['kills']:>6}{current[elem]['assists']:>12}{current[elem]['deaths']:>10}{current[elem]['MVPS']:>8}{current[elem]['points']:>15}")
+            print(f"{elem:<8}{current[elem]['kills']:>5}{current[elem]['assists']:>12}{current[elem]['deaths']:>10}{current[elem]['MVPS']:>8}{current[elem]['points']:>15}")
       print("-------------------------------------------------------------------")      
       return
 
@@ -32,6 +32,7 @@ def process_round(currentRound, total, actualround):
 
       :param currentRound: Diccionario con las estadisticas de los jugadores, teniendo en cuenta unicamente la ronda actual.
       :param total: Diccionario con las estadisticas de los jugadores, teniendo en cuenta todas las rondas previas.
+      :param actualround: valor int de la ronda actual, utilizado para "display_round", como contador de ronda.
      """
      currLeader = "dummyvalue"
      currLPoints = -99999
