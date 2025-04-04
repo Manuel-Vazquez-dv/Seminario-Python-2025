@@ -13,7 +13,7 @@ def sortVocal(toSort):
 
 def display_round(current):
       """
-      Imprime en consola las estadisticas totales de los jugadores utilizando los valores enviados.
+      Imprime en consola las estadisticas totales de los jugadores ordenado en manera de descendencia de puntos utilizando los valores enviados.
 
       :param current: Diccionario con los valores totales de cada jugador.
       """
@@ -30,7 +30,8 @@ def display_round(current):
 
 def process_round(currentRound, total, actualround):
      """
-      Procesa la ronda actual, determina el MVP, y luego envia los datos actualizados a "display_round" con el proposito de imprimir el ranking.
+      Procesa la ronda actual, actualiza los datos del diccionario total, determina el MVP, muestra la ronda y su MVP, 
+      y luego envia los datos actualizados a "display_round" con el proposito de imprimir el ranking.
 
       :param currentRound: Diccionario con las estadisticas de los jugadores, teniendo en cuenta unicamente la ronda actual.
       :param total: Diccionario con las estadisticas de los jugadores, teniendo en cuenta todas las rondas previas.
